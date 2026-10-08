@@ -1,0 +1,387 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import site from '../data/site.json';
+
+const work = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+const featured = work.filter((w) => w.data.featured);
+const rest = work.filter((w) => !w.data.featured);
+// Years of experience update themselves every year.
+const years = new Date().getFullYear() - site.careerStart;
+const domainFilters = ['Enterprise architecture', 'Digital workplace', 'Identity & access', 'Agentic AI'];
+
+// Data for the D3 capability map, built from site.json + the work collection.
+const mapData = {
+  capabilities: site.map.capabilities,
+  links: site.map.links,
+  work: work.map((w) => ({ id: w.id, title: w.data.title, caps: (site.map.work as Record<string, string[]>)[w.id] ?? [] })),
+};
+
+// Orbit node positions (percent of the orbit box): top, lower right, lower left.
+const nodePos = [
+  { left: '38%', top: '-4%' },
+  { left: '74%', top: '58%' },
+  { left: '2%', top: '58%' },
+];
+---
+<Base title="Vijay Jadi — Enterprise architect" description="Vijay Jadi is a TOGAF-certified enterprise architect specialising in digital workplace, identity & access management and agentic AI.">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <div class="hero-photo" aria-hidden="true">
+      <img src="/images/vijay.jpg" alt="" width="960" height="960" fetchpriority="high" />
+    </div>
+    <canvas class="hero-light" id="hero-light" aria-hidden="true"></canvas>
+    <svg class="pointer-events-none absolute right-0 top-0 hidden h-full w-[56%] md:block" viewBox="0 0 800 900" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#F2C230" aria-hidden="true">
+      <circle class="draft" cx="430" cy="380" r="300" stroke-opacity="0.22" stroke-dasharray="2 8" />
+      <circle class="draft" cx="430" cy="380" r="370" stroke-opacity="0.1" />
+      <path class="draft" d="M90 380 H780" stroke-opacity="0.14" />
+      <path class="draft" d="M430 30 V860" stroke-opacity="0.14" />
+      <circle cx="730" cy="380" r="5" fill="#F2C230" stroke="none" />
+    </svg>
+
+    <div class="wrap relative flex min-h-[100svh] flex-col">
+      <header class="flex flex-wrap items-center justify-between gap-4 py-7">
+        <a href="#top" class="serif text-[22px] no-underline">{site.name}</a>
+        <nav aria-label="Main" class="hidden flex-wrap gap-x-8 gap-y-1 text-[15px] text-mist md:flex">
+          <a href="#practice" class="py-2.5 no-underline" data-scroll>Practice</a>
+          <a href="#domains" class="py-2.5 no-underline" data-scroll>Domains</a>
+          <a href="#map" class="py-2.5 no-underline" data-scroll>Map</a>
+          <a href="#work" class="py-2.5 no-underline" data-scroll>Work</a>
+          <a href="#journey" class="py-2.5 no-underline" data-scroll>Achievements</a>
+          <a href="#contact" class="py-2.5 no-underline" data-scroll>Contact</a>
+        </nav>
+        <a href={site.cv} class="btn btn-line !min-h-[44px] !px-5 text-sm">Download CV</a>
+      </header>
+
+      <main id="main" class="flex max-w-[780px] flex-1 flex-col justify-center gap-7 pb-20 pt-2">
+        <h1 class="display-xl" data-hero-title>
+          <span class="line-mask"><span class="block">Enterprise</span></span>
+          <span class="line-mask"><em class="block">architect</em></span>
+        </h1>
+        <div class="hero-sub flex flex-wrap items-center gap-x-5 gap-y-3 text-lg text-[#E4E1D9]">
+          {site.specialisms.map((s, i) => (
+            <>
+              {i > 0 && <span class="h-px w-7 bg-gold" aria-hidden="true" />}
+              <span>{s}</span>
+            </>
+          ))}
+        </div>
+        <p class="hero-sub m-0 max-w-[40ch] text-xl leading-relaxed text-[#BDBAB2]">{site.heroLead}</p>
+        <div class="hero-sub flex flex-wrap gap-3.5">
+          <a href="#work" class="btn btn-gold" data-scroll>See my work</a>
+          <a href="#contact" class="btn btn-line" data-scroll>Get in touch</a>
+        </div>
+      </main>
+
+    </div>
+  </section>
+
+  <!-- ============ ABOUT + ID CARD ============ -->
+  <section class="section warm overflow-hidden" id="about">
+    <div class="wrap flex flex-wrap items-center gap-[72px]">
+      <div class="min-w-0 flex-[1_1_500px]">
+        <h2 class="h2 mb-8">Hi, I'm Vijay.</h2>
+        {site.about.map((p, i) => (
+          <p class={`m-0 mb-5 max-w-[60ch] leading-relaxed ${i === 0 ? 'text-xl text-[#E4E1D9]' : 'text-lg text-[#B4B1A9]'}`}>{p}</p>
+        ))}
+      </div>
+      <div class="flex min-w-0 flex-[1_1_380px] justify-center">
+        <div class="card-stage" data-float>
+          <div class="mx-auto mb-[-6px] h-24 w-px bg-gradient-to-b from-transparent to-[rgba(241,239,232,0.35)]" aria-hidden="true"></div>
+          <button class="idcard block border-0 bg-transparent p-0 text-left text-paper" type="button" aria-label="Turn the ID card over" data-idcard>
+            <div class="idcard-face pane">
+              <div class="mx-auto mb-6 h-2 w-14 rounded-md bg-[#2c2c31]"></div>
+              <div class="flex items-center gap-[18px]">
+                <img src="/images/vijay-480.jpg" alt="" width="92" height="108" loading="lazy" class="h-[108px] w-[92px] rounded-[14px] object-cover" />
+                <div>
+                  <div class="serif text-[26px] leading-[1.05]">Vijay<br />Jadi</div>
+                  <div class="mt-2 text-[13px] text-gold">Enterprise architect</div>
+                </div>
+              </div>
+              <dl class="mt-7 grid grid-cols-2 gap-x-3 gap-y-4 text-[13px]">
+                <div><dt class="text-dim">Based in</dt><dd class="m-0">Sweden</dd></div>
+                <div><dt class="text-dim">From</dt><dd class="m-0">Hubli, India</dd></div>
+                <div><dt class="text-dim">Certified</dt><dd class="m-0">TOGAF</dd></div>
+                <div><dt class="text-dim">Experience</dt><dd class="m-0">{years} years</dd></div>
+              </dl>
+              <div class="mt-7 flex items-center justify-between border-t border-[var(--line)] pt-4 text-xs text-dim">
+                <span>Hover or tap to turn over</span>
+                <span class="h-6 w-[34px] rounded-[5px] bg-gradient-to-br from-[#F7DC7A] to-[#B88C10]"></span>
+              </div>
+            </div>
+            <div class="idcard-face idcard-back pane">
+              <div class="mb-4 text-[13px] text-gold">What I bring</div>
+              <div class="serif mb-6 text-[24px] leading-tight">Strategy to capability to architecture to outcome.</div>
+              <ul class="m-0 list-none space-y-2 p-0 text-[15px] text-mist">
+                <li>Enterprise architecture</li>
+                <li>Digital workplace</li>
+                <li>Identity &amp; access</li>
+                <li>Agentic AI</li>
+                <li>Architecture governance</li>
+              </ul>
+              <div class="mt-8 border-t border-[var(--line)] pt-4 text-xs text-dim">{site.languages}</div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRACTICE ============ -->
+  <section class="section" id="practice">
+    <div class="wrap">
+      <div class="mb-16 flex flex-wrap items-end justify-between gap-6">
+        <h2 class="h2 max-w-[16ch]">How I practise enterprise architecture</h2>
+        <p class="lede max-w-[38ch]">Seven steps, one loop. What we measure at the end feeds the next round of strategy.</p>
+      </div>
+      <div class="overflow-x-auto pb-2">
+        <ol class="relative m-0 grid min-w-[1060px] list-none grid-cols-7 gap-x-[18px] p-0">
+          <svg class="absolute left-0 top-[28px] h-[2px] w-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 2" aria-hidden="true">
+            <line class="practice-line" x1="0" y1="1" x2="100" y2="1" stroke="#F2C230" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+          </svg>
+          {site.practice.map((p, i) => (
+            <li class="practice-step">
+              <div class={`serif relative flex h-14 w-14 items-center justify-center rounded-full bg-graphite text-[22px] text-gold ${i === 0 ? 'goldglow' : 'border border-[rgba(242,194,48,0.55)]'}`}>{i + 1}</div>
+              <h3 class="serif mb-2.5 mt-[22px] text-[23px]">{p.step}</h3>
+              <p class="m-0 text-[15px] leading-normal text-ash">{p.text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DOMAINS (pinned orbit) ============ -->
+  <section class="warm" id="domains">
+    <div class="domains-pin section">
+      <div class="wrap">
+        <h2 class="h2 mb-3.5">Three domains, one enterprise</h2>
+        <p class="lede mb-14">Enterprise architecture sits at the centre. Each domain is where I go deepest.</p>
+        <div class="flex flex-wrap items-center gap-16">
+          <div class="min-w-0 flex-[1_1_480px]">
+            <div class="orbit" aria-hidden="true">
+              <svg class="orbit-ring" viewBox="0 0 540 540" fill="none">
+                <g class="orbit-spin" style="transform-origin: 270px 270px">
+                  <circle cx="270" cy="270" r="230" stroke="rgba(242,194,48,0.35)" stroke-dasharray="2 9" />
+                  <circle cx="500" cy="270" r="4" fill="#F2C230" />
+                  <circle cx="96" cy="160" r="3" fill="#F2C230" opacity="0.6" />
+                </g>
+                <circle cx="270" cy="270" r="262" stroke="rgba(241,239,232,0.06)" />
+                <circle cx="270" cy="270" r="150" stroke="rgba(241,239,232,0.08)" />
+                {[[270, 40], [469, 385], [71, 385]].map(([x, y], i) => (
+                  <line class="spoke" data-i={i} x1="270" y1="270" x2={x} y2={y} stroke="rgba(241,239,232,0.12)" stroke-width="1.5" />
+                ))}
+              </svg>
+              <div class="core goldglow"><span class="serif px-2 text-[clamp(15px,1.8vw,22px)] leading-tight">Enterprise<br />architecture</span></div>
+              {site.domains.map((d, i) => (
+                <div class={`node ${i === 0 ? 'is-active' : ''}`} data-node={i} style={`left:${nodePos[i].left};top:${nodePos[i].top}`}>{d.short}</div>
+              ))}
+            </div>
+          </div>
+          <div class="domain-panels min-w-0 flex-[1_1_420px]">
+            <div class="domain-ticks mb-8 flex gap-2" aria-hidden="true">
+              {site.domains.map((_, i) => <span class={`domain-tick h-[3px] w-9 rounded-sm ${i === 0 ? 'bg-gold' : 'bg-[rgba(241,239,232,0.25)]'}`} data-tick={i} />)}
+            </div>
+            {site.domains.map((d, i) => (
+              <div class={`domain-panel ${i === 0 ? 'is-active' : ''}`} data-panel={i}>
+                <h3 class="serif m-0 mb-4 text-[clamp(36px,4vw,48px)] leading-none">{d.name}</h3>
+                <p class="serif m-0 mb-7 max-w-[30ch] text-[22px] italic leading-snug text-[#E4E1D9]">{d.statement}</p>
+                <ul class="m-0 max-w-[540px] list-none p-0">
+                  {d.points.map((pt) => <li class="border-t border-[var(--line)] py-3.5 text-base leading-normal text-mist last:border-b">{pt}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CAPABILITY MAP (D3) ============ -->
+  <section class="section" id="map">
+    <div class="wrap">
+      <div class="mb-10 flex flex-wrap items-end justify-between gap-6">
+        <h2 class="h2 max-w-[14ch]">The capability map</h2>
+        <p class="lede max-w-[44ch]">{site.map.intro}</p>
+      </div>
+      <div class="map-shell map-grid">
+        <svg class="map-svg" id="cap-map" role="group" aria-label="Interactive map of enterprise architecture capabilities across digital workplace, identity and agentic AI"></svg>
+        <div class="map-info" id="map-info" aria-live="polite">
+          <div class="mb-2 text-sm text-gold" data-info-domain>Start anywhere</div>
+          <div class="serif mb-2 text-2xl leading-tight" data-info-title>Four domains, one enterprise</div>
+          <p class="m-0 text-[15px] leading-normal text-mist" data-info-note>Gold lines show where capabilities depend on each other across domains. Case studies light up the capabilities they prove.</p>
+        </div>
+      </div>
+      <div class="mt-5 flex flex-wrap gap-x-7 gap-y-2 text-sm text-ash" aria-hidden="true">
+        <span class="flex items-center gap-2"><span class="h-3 w-3 rounded-full bg-paper"></span>Enterprise architecture</span>
+        <span class="flex items-center gap-2"><span class="h-3 w-3 rounded-full bg-[#E9A23B]"></span>Digital workplace</span>
+        <span class="flex items-center gap-2"><span class="h-3 w-3 rounded-full bg-[#C9C2AE]"></span>Identity &amp; access</span>
+        <span class="flex items-center gap-2"><span class="h-3 w-3 rounded-full bg-gold"></span>Agentic AI</span>
+        <span class="flex items-center gap-2"><span class="h-3 w-3 rotate-45 border border-gold"></span>Case study</span>
+      </div>
+      <script type="application/json" id="map-data" set:html={JSON.stringify(mapData)}></script>
+    </div>
+  </section>
+
+  <!-- ============ WORK ============ -->
+  <section class="section warm" id="work">
+    <div class="wrap">
+      <div class="mb-12 flex flex-wrap items-end justify-between gap-6">
+        <h2 class="h2">Selected work</h2>
+        <div class="flex flex-wrap gap-2" role="group" aria-label="Filter work by domain">
+          <button class="filter" type="button" aria-pressed="true" data-filter="all">All</button>
+          {domainFilters.map((d) => <button class="filter" type="button" aria-pressed="false" data-filter={d}>{d}</button>)}
+        </div>
+      </div>
+
+      <div class="grid gap-[22px]" data-work-list>
+        {featured.map((w, i) => (
+          <article class={`work-card pane relative overflow-hidden rounded-[28px] bg-panel p-[clamp(28px,4vw,52px)] ${i === 0 ? '' : ''}`} data-domain={w.data.domain}>
+            <div class="pointer-events-none absolute -right-28 -top-28 h-[380px] w-[380px] rounded-full bg-[radial-gradient(circle,rgba(242,194,48,0.14),transparent_70%)]" aria-hidden="true"></div>
+            <div class="relative flex flex-wrap gap-10">
+              <div class="flex-[1_1_340px]">
+                <div class="mb-4 text-sm text-gold">{w.data.domain}, {w.data.organisation}</div>
+                <h3 class="serif m-0 text-[clamp(30px,3.4vw,48px)] leading-[1.03]">{w.data.title}</h3>
+              </div>
+              <div class="grid flex-[1.3_1_440px] grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-6">
+                <div><div class="serif mb-2 text-[19px] italic text-gold">Driver</div><p class="m-0 text-[15px] leading-relaxed text-mist">{w.data.driver}</p></div>
+                <div><div class="serif mb-2 text-[19px] italic text-gold">Response</div><p class="m-0 text-[15px] leading-relaxed text-mist">{w.data.response}</p></div>
+                <div><div class="serif mb-2 text-[19px] italic text-gold">Outcome</div><p class="m-0 text-[15px] leading-relaxed text-mist">{w.data.outcome}</p></div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-8 border-t border-[var(--line)]" data-work-list>
+        {rest.map((w) => (
+          <article class="work-card border-b border-[var(--line)] py-6" data-domain={w.data.domain}>
+            <details class="story">
+              <summary class="flex flex-wrap items-baseline gap-x-10 gap-y-1.5 !text-paper">
+                <span class="serif flex-[1_1_340px] text-[26px]">{w.data.title}</span>
+                <span class="flex-[2_1_360px] text-[15px] font-normal text-ash">{w.data.outcome}</span>
+                <span class="flex-none text-sm font-normal text-gold">{w.data.domain}</span>
+              </summary>
+              <div class="mt-5 grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-6 pb-2">
+                <div><div class="serif mb-1.5 italic text-gold">Driver</div><p class="m-0 text-[15px] text-mist">{w.data.driver}</p></div>
+                <div><div class="serif mb-1.5 italic text-gold">Response</div><p class="m-0 text-[15px] text-mist">{w.data.response}</p></div>
+                <div><div class="serif mb-1.5 italic text-gold">Organisation</div><p class="m-0 text-[15px] text-mist">{w.data.organisation}</p></div>
+              </div>
+            </details>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ JOURNEY + ACHIEVEMENTS (pinned horizontal reel) ============ -->
+  <section id="journey" class="ach">
+    <div class="ach-pin">
+      <div class="wrap ach-head">
+        <div class="flex flex-wrap items-end gap-x-8 gap-y-2">
+          <div class="years-mark serif leading-[0.8] text-gold" aria-hidden="true">
+            <span class="years-num block text-[clamp(84px,9vw,150px)] font-[850] [font-stretch:125%] tracking-[-0.04em]">{years}</span>
+          </div>
+          <div class="pb-1">
+            <h2 class="h2 max-w-[20ch] !text-[clamp(26px,2.6vw,40px)]"><span class="sr-only">{years} </span><span class="text-gold">years</span> from support desk to enterprise architect</h2>
+            <p class="lede mt-3">{site.achievementsIntro}</p>
+          </div>
+        </div>
+        <div class="ach-progress" aria-hidden="true">
+          <div class="ach-progress-track"><div class="ach-progress-fill"></div></div>
+          <ol class="ach-progress-labels">
+            {site.chapters.map((c) => <li>{c.years.split(' ')[0]}</li>)}
+          </ol>
+        </div>
+      </div>
+
+      <div class="ach-viewport">
+        <div class="ach-track">
+          {site.chapters.map((c, ci) => (
+            <article class="chapter" data-chapter={ci}>
+              <div class="chapter-mark" aria-hidden="true">{c.mark}</div>
+              <div class="chapter-inner">
+                <div class="chapter-left">
+                  <div class="chapter-years serif">{c.years}</div>
+                  <h3 class="serif chapter-org">{c.org}</h3>
+                  <p class="chapter-role">{c.role}</p>
+                  <div class="chapter-stats">
+                    {c.stats.map((st) => {
+                      const numeric = /^\d+$/.test(st.value);
+                      return (
+                        <div class="stat">
+                          <div class="stat-value serif">
+                            {numeric
+                              ? <span data-count={st.value} data-suffix={st.suffix ?? ''}>{Number(st.value).toLocaleString('en-GB')}{st.suffix ?? ''}</span>
+                              : <span data-scramble={st.value}>{st.value}</span>}
+                          </div>
+                          <div class="stat-label">{st.label}</div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+                <div class="chapter-right">
+                  <ul class="chapter-items">
+                    {c.items.map((it) => <li>{it}</li>)}
+                  </ul>
+                  {c.award && (
+                    <div class="award">
+                      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><circle cx="15" cy="12" r="8" stroke="#F2C230" stroke-width="1.6" /><path d="M10 18.5 8 28l7-3.5L22 28l-2-9.5" stroke="#F2C230" stroke-width="1.6" stroke-linejoin="round" /></svg>
+                      <span>{c.award}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CREDENTIALS ============ -->
+  <section class="pb-[clamp(70px,9vw,110px)] pt-6">
+    <div class="wrap">
+      <h2 class="h2 mb-8 !text-[clamp(26px,2.6vw,40px)]">Credentials</h2>
+      <ul class="cred-row m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(230px,1fr))] gap-px overflow-hidden rounded-[22px] border border-[var(--line)] bg-[var(--line)] p-0">
+        {site.credentials.map((c, i) => (
+          <li class="bg-ink px-7 py-6">
+            <div class={`serif text-[22px] ${i === 0 ? 'text-gold' : ''}`}>{c.name}</div>
+            <div class="mt-1 text-sm text-ash">{c.detail}</div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="hero !min-h-0" id="contact">
+    <div class="wrap flex flex-wrap items-stretch">
+      <div class="relative flex min-w-0 flex-[999_1_560px] flex-col gap-8 py-[clamp(90px,11vw,140px)] pr-10">
+        <h2 class="display-xl m-0 text-[clamp(40px,6.4vw,100px)]">Let's build<br /><em>what's next</em></h2>
+        <p class="m-0 max-w-[44ch] text-[19px] leading-relaxed text-mist">I'm always glad to talk about enterprise architecture, identity, agentic AI and how work will change.</p>
+        <div class="flex flex-wrap gap-3.5">
+          <a href={`mailto:${site.email}`} class="btn btn-gold">{site.email}</a>
+          <a href={site.linkedin} class="btn btn-line" rel="me noopener">LinkedIn</a>
+          <a href={site.cv} class="btn btn-line">Download CV</a>
+        </div>
+      </div>
+      <div class="photo-fade relative min-h-[460px] flex-[1_1_380px]" aria-hidden="true">
+        <img src="/images/vijay.jpg" alt="" loading="lazy" class="absolute inset-0 h-full w-full object-cover object-[50%_30%] opacity-85" />
+      </div>
+    </div>
+    <footer class="border-t border-[var(--line)]">
+      <div class="wrap flex flex-wrap justify-between gap-3 py-6 text-sm text-dim">
+        <span class="serif text-lg text-paper">{site.name}</span>
+        <span>Enterprise architect, {site.location}</span>
+        <span>© {new Date().getFullYear()}</span>
+      </div>
+    </footer>
+  </section>
+
+  <script>
+    import '../scripts/main';
+  </script>
+</Base>

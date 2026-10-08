@@ -1,0 +1,472 @@
+{
+  "name": "Vijay Jadi",
+  "role": "Enterprise architect",
+  "specialisms": [
+    "Digital workplace",
+    "Identity & access",
+    "Agentic AI"
+  ],
+  "heroLead": "I translate business strategy into architecture that holds up at enterprise scale, and tie every technology decision to a real capability gap and a measurable outcome.",
+  "location": "Helsingborg, Sweden",
+  "email": "hello@vijayjadi.com",
+  "linkedin": "https://www.linkedin.com/in/your-profile",
+  "cv": "/cv/Vijay_Jadi_CV.pdf",
+  "about": [
+    "A TOGAF-certified enterprise architect based in Helsingborg, Sweden. I advise CIOs and senior leadership on where technology should go next, and I govern how it gets there, for organisations across North America, Europe, South-East Asia, Australia and India.",
+    "My depth sits in three domains that increasingly depend on each other: the digital workplace where people work, the identity layer that decides what they can reach, and the agentic AI that is starting to act on their behalf.",
+    "I started on a support desk in 2007. Nearly two decades later, I still design as someone who knows what breaks in production."
+  ],
+  "practice": [
+    {
+      "step": "Strategy",
+      "text": "Start from validated business demand, not technology trends."
+    },
+    {
+      "step": "Capability",
+      "text": "Map capabilities, find the gaps and the duplication across work streams."
+    },
+    {
+      "step": "Architecture",
+      "text": "Target states and roadmaps that are technology-agnostic first."
+    },
+    {
+      "step": "Enablement",
+      "text": "Plan how capabilities are adopted, so they deliver the intended outcome."
+    },
+    {
+      "step": "Experience",
+      "text": "Measure what people actually feel, with XLAs, sentiment and telemetry."
+    },
+    {
+      "step": "Governance",
+      "text": "Principles, standards, decision records and an architecture forum that every change passes through."
+    },
+    {
+      "step": "Improvement",
+      "text": "Close the loop: what we measure feeds the next round of strategy."
+    }
+  ],
+  "domains": [
+    {
+      "key": "dw",
+      "name": "Digital workplace",
+      "short": "Workplace",
+      "statement": "End-user computing, devices, collaboration and employee experience, architected as one system rather than four towers.",
+      "points": [
+        "One Device strategy with cloud-native management and zero-touch provisioning worldwide",
+        "Store technology architecture for retail floors, with circular reuse of idle hardware",
+        "Founded an Experience Management Office measuring XLAs, sentiment and telemetry",
+        "30,000-user acquisition integration, 17,000 fixed lines moved to cloud telephony",
+        "One global collaboration tenant for an insurer's operating companies"
+      ]
+    },
+    {
+      "key": "iam",
+      "name": "Identity & access",
+      "short": "Identity",
+      "statement": "Identity as the control plane of the enterprise: who can reach what, from which device, and why.",
+      "points": [
+        "Zero Trust architecture with conditional access and device compliance as live signals",
+        "Administrative tiering to secure and shrink legacy on-premises directories",
+        "Joiner–mover–leaver lifecycle driven by HR, with persona-based entitlement",
+        "Identity separation and integration through mergers, acquisitions and divestment",
+        "Privileged access secured for cloud administration"
+      ]
+    },
+    {
+      "key": "ai",
+      "name": "Agentic AI",
+      "short": "Agentic AI",
+      "statement": "Moving the question from “which AI tool?” to “which agent may act, on what, and under whose authority?”",
+      "points": [
+        "A placement framework that matches the right AI tool to each use case",
+        "Tiered governance for agents, from personal experiment to production",
+        "Agent-to-agent architecture: how agents converse and hand off safely",
+        "An intent-to-outcome model with one front door and governed domain agents",
+        "Product Owner for Microsoft Copilot, grounded in NIST AI RMF and EU AI Act awareness"
+      ]
+    }
+  ],
+  "credentials": [
+    {
+      "name": "TOGAF 9 and 10",
+      "detail": "Certified Enterprise Architect"
+    },
+    {
+      "name": "MCSE",
+      "detail": "Microsoft Certified Systems Engineer"
+    },
+    {
+      "name": "CCNA",
+      "detail": "Cisco Certified Network Associate"
+    },
+    {
+      "name": "Leadership Programme",
+      "detail": "Nanyang Technological University, Singapore"
+    }
+  ],
+  "languages": "English, Hindi, Kannada, Tamil and Kshatriya",
+  "map": {
+    "intro": "Every capability I work on, how they connect, and the work that proves them. Hover or tap a node.",
+    "capabilities": [
+      {
+        "id": "alignment",
+        "label": "Business-to-technology alignment",
+        "domain": "ea",
+        "note": "Roadmaps that start from validated business demand and are measured against business KPIs."
+      },
+      {
+        "id": "capability",
+        "label": "Capability architecture",
+        "domain": "ea",
+        "note": "Capability maps that expose gaps, overlaps and duplication across work streams."
+      },
+      {
+        "id": "governance",
+        "label": "Architecture governance",
+        "domain": "ea",
+        "note": "Principles, standards and an architecture forum that every significant change passes through."
+      },
+      {
+        "id": "decisions",
+        "label": "Decision records",
+        "domain": "ea",
+        "note": "Architecture decisions written down, so the reasoning outlives the meeting."
+      },
+      {
+        "id": "data",
+        "label": "Data as a product",
+        "domain": "ea",
+        "note": "Reusable data platforms that let architecture forecast, not just report."
+      },
+      {
+        "id": "roadmaps",
+        "label": "Target states and roadmaps",
+        "domain": "ea",
+        "note": "Technology-agnostic target architectures with staged, fundable roadmaps."
+      },
+      {
+        "id": "devices",
+        "label": "Device management",
+        "domain": "dw",
+        "note": "One Device strategy with cloud-native management and zero-touch provisioning."
+      },
+      {
+        "id": "collab",
+        "label": "Collaboration platforms",
+        "domain": "dw",
+        "note": "Messaging, meetings, intranet and telephony as one workplace."
+      },
+      {
+        "id": "store",
+        "label": "Store technology",
+        "domain": "dw",
+        "note": "Rugged devices and connectivity for retail floors, with circular hardware reuse."
+      },
+      {
+        "id": "xla",
+        "label": "Experience measurement",
+        "domain": "dw",
+        "note": "XLAs, sentiment and telemetry correlated into one view of digital friction."
+      },
+      {
+        "id": "apps",
+        "label": "Application provisioning",
+        "domain": "dw",
+        "note": "Virtual desktops, app streaming and web-hosted applications."
+      },
+      {
+        "id": "enablement",
+        "label": "Adoption and enablement",
+        "domain": "dw",
+        "note": "Making sure new capabilities are actually used and deliver their outcome."
+      },
+      {
+        "id": "zerotrust",
+        "label": "Zero Trust access",
+        "domain": "iam",
+        "note": "Conditional access with identity and device compliance as live signals."
+      },
+      {
+        "id": "lifecycle",
+        "label": "Identity lifecycle",
+        "domain": "iam",
+        "note": "Joiner–mover–leaver driven by HR, with persona-based entitlement."
+      },
+      {
+        "id": "privileged",
+        "label": "Privileged access",
+        "domain": "iam",
+        "note": "Tiered, secured administration for directories and cloud platforms."
+      },
+      {
+        "id": "tiering",
+        "label": "Directory tiering",
+        "domain": "iam",
+        "note": "Securing and shrinking legacy on-premises directories."
+      },
+      {
+        "id": "mna",
+        "label": "Identity through M&A",
+        "domain": "iam",
+        "note": "Separating and integrating identity estates through acquisitions and divestment."
+      },
+      {
+        "id": "placement",
+        "label": "AI tool placement",
+        "domain": "ai",
+        "note": "Matching the right AI tool to each use case instead of one tool for everything."
+      },
+      {
+        "id": "agentgov",
+        "label": "Agent governance",
+        "domain": "ai",
+        "note": "Tiered governance for agents, from personal experiment to production."
+      },
+      {
+        "id": "a2a",
+        "label": "Agent-to-agent architecture",
+        "domain": "ai",
+        "note": "How agents converse, hand off and stay accountable."
+      },
+      {
+        "id": "frontdoor",
+        "label": "Intent front door",
+        "domain": "ai",
+        "note": "One approved entry point that turns a coworker's intent into an outcome."
+      },
+      {
+        "id": "airisk",
+        "label": "AI risk and compliance",
+        "domain": "ai",
+        "note": "Grounded in NIST AI RMF and EU AI Act awareness, and in classified knowledge."
+      },
+      {
+        "id": "copilot",
+        "label": "Copilot as a product",
+        "domain": "ai",
+        "note": "Product ownership of Microsoft Copilot at enterprise scale."
+      }
+    ],
+    "links": [
+      [
+        "xla",
+        "data"
+      ],
+      [
+        "zerotrust",
+        "devices"
+      ],
+      [
+        "agentgov",
+        "privileged"
+      ],
+      [
+        "frontdoor",
+        "collab"
+      ],
+      [
+        "airisk",
+        "governance"
+      ],
+      [
+        "mna",
+        "collab"
+      ],
+      [
+        "lifecycle",
+        "apps"
+      ],
+      [
+        "placement",
+        "capability"
+      ],
+      [
+        "agentgov",
+        "decisions"
+      ],
+      [
+        "copilot",
+        "enablement"
+      ],
+      [
+        "store",
+        "devices"
+      ],
+      [
+        "a2a",
+        "frontdoor"
+      ],
+      [
+        "roadmaps",
+        "alignment"
+      ],
+      [
+        "tiering",
+        "zerotrust"
+      ],
+      [
+        "copilot",
+        "airisk"
+      ]
+    ],
+    "work": {
+      "business-technology-alignment": [
+        "alignment",
+        "roadmaps",
+        "capability"
+      ],
+      "data-as-a-product": [
+        "data",
+        "xla"
+      ],
+      "experience-management-office": [
+        "xla",
+        "data",
+        "enablement"
+      ],
+      "one-device": [
+        "devices",
+        "store",
+        "zerotrust"
+      ],
+      "zero-trust-identity": [
+        "tiering",
+        "privileged",
+        "zerotrust"
+      ],
+      "alstom-own-it": [
+        "mna",
+        "lifecycle",
+        "collab"
+      ],
+      "agent-governance": [
+        "agentgov",
+        "placement",
+        "airisk",
+        "copilot"
+      ],
+      "intent-to-outcome": [
+        "frontdoor",
+        "a2a",
+        "agentgov"
+      ]
+    }
+  },
+  "careerStart": 2007,
+  "achievementsIntro": "Every role left something behind that still runs. Scroll through the highlights.",
+  "chapters": [
+    {
+      "years": "2007 – 2012",
+      "org": "Microland and earlier roles",
+      "mark": "2007",
+      "place": "Bangalore, India",
+      "role": "Desktop support to Senior Messaging Administrator",
+      "stats": [
+        {
+          "value": "4",
+          "label": "regions supported: US, UK, Australia and Japan"
+        }
+      ],
+      "items": [
+        "Supported clients across the US, UK, Australia and Japan",
+        "Ran Exchange disaster recovery, database restore and repair",
+        "Moved from desktop support to server engineering to messaging"
+      ],
+      "award": null
+    },
+    {
+      "years": "2012 – 2016",
+      "org": "AXA Technologies and Capgemini",
+      "mark": "AXA",
+      "place": "Bangalore, India",
+      "role": "Architect, Corporate Technology and Transformation Office",
+      "stats": [
+        {
+          "value": "30000",
+          "label": "users migrated in a single regional move, with no migration tools"
+        }
+      ],
+      "items": [
+        "Consolidated AXA's operating companies onto one secured global Office 365 tenant",
+        "Ran large mailbox migrations across South Europe, the Middle East and Australia to the US",
+        "Designed bring-your-own-key encryption and privileged admin access for the cloud platform",
+        "Federated calendars across tenants and merged Yammer networks into one enterprise network",
+        "Designed the business continuity plan and compliance model for eDiscovery and retention"
+      ],
+      "award": "Twice won the Best Team award, and promoted from operations into the global design team"
+    },
+    {
+      "years": "2016 – 2017",
+      "org": "VMware",
+      "mark": "VMWARE",
+      "place": "Bangalore, India",
+      "role": "SME Architect",
+      "stats": [
+        {
+          "value": "O365",
+          "label": "VMware's own move from on-premises Exchange"
+        }
+      ],
+      "items": [
+        "Led VMware's move from on-premises Exchange to Office 365, despite large unmanaged mailboxes and tight timelines",
+        "Deployed rights management and message encryption, and hybrid monitoring and reporting",
+        "Presented VMware's own cloud journey to customers as a reference story"
+      ],
+      "award": "Recognised by senior leadership for resolving journaling and network performance issues"
+    },
+    {
+      "years": "2017 – 2024",
+      "org": "Alstom Transport",
+      "mark": "ALSTOM",
+      "place": "Bangalore, India",
+      "role": "Senior Manager and Lead Architect, Workplace and Collaboration",
+      "stats": [
+        {
+          "value": "40000",
+          "suffix": "",
+          "label": "users moved to Alstom's own IT without business impact"
+        },
+        {
+          "value": "30000",
+          "label": "PCs refreshed in the Bombardier integration"
+        },
+        {
+          "value": "17000",
+          "label": "fixed lines moved to cloud telephony"
+        }
+      ],
+      "items": [
+        "Helped build Alstom's own IT from scratch after GE, mobile-first and cloud-first",
+        "Integrated Bombardier Transportation, from M365 onboarding to a full PC refresh, on an aggressive timeline",
+        "Introduced Active Directory tiering and moved identity towards Zero Trust",
+        "Rolled out Macs fully managed in Intune, without a separate Mac management tool",
+        "Brought in Azure-hosted ChatGPT, Copilot, Teams Premium, Viva and Autopatch early",
+        "Cut consultant spend by delivering highly technical projects in-house"
+      ],
+      "award": "Recognised by the CEO for major cost savings, and by the VP and CTO for delivery"
+    },
+    {
+      "years": "2024 – now",
+      "org": "IKEA IT AB",
+      "mark": "IKEA",
+      "place": "Helsingborg, Sweden",
+      "role": "Enterprise Architect for Digital Workplace, AI and IAM; Product Owner for Microsoft Copilot",
+      "stats": [
+        {
+          "value": "XMO",
+          "label": "Experience Management Office, founded from scratch"
+        }
+      ],
+      "items": [
+        "Founded the Experience Management Office, with one view correlating sentiment, telemetry and service health",
+        "Defined the One Device strategy: zero-touch provisioning worldwide, from laptops to store handhelds",
+        "Designed the store technology architecture and automated reuse of idle and untracked hardware",
+        "Introduced data as a product to the Digital Workplace and IAM domains for the first time",
+        "Built the business-to-technology alignment practice, with roadmaps measured against business KPIs",
+        "Shaping AI tool placement and tiered agent governance as Product Owner for Microsoft Copilot"
+      ],
+      "award": null
+    }
+  ]
+}
